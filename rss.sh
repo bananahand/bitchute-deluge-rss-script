@@ -10,7 +10,7 @@ download_path="/your/download/path/"
 ## END CONFIG
 
 deluge_console=$(which deluge-console)
-pull_guid=$(curl -s https://www.bitchute.com/feeds/rss/channel/$channel/ | grep -Eo "<guid>.{12}" | sed "s]<guid>]]g")
+pull_guid=$(curl -s https://www.bitchute.com/feeds/rss/channel/$channel/ | grep -Eo "<guid>.{12}" | sed "s/<guid>//g")
 
 for guid in $pull_guid; do
 	magnet=$(curl -s https://www.bitchute.com/video/$guid/ | grep -Eo "magnet.*\" data-toggle" | sed "s/\" data-toggle$//g")
